@@ -1,26 +1,48 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
-
 buildscript {
-    
     repositories {
         google()
         mavenCentral()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:8.7.2'
+        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.24'
         classpath 'com.google.gms:google-services:4.4.2'
-
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
     }
 }
 
-apply from: "variables.gradle"
+// SDK versions
+ext {
+    compileSdkVersion = 35
+    minSdkVersion = 23
+    targetSdkVersion = 35
+
+    androidxAppCompatVersion = "1.6.1"
+    androidxCoordinatorLayoutVersion = "1.2.0"
+    coreSplashScreenVersion = "1.0.1"
+    junitVersion = "4.13.2"
+    androidxJunitVersion = "1.1.5"
+    androidxEspressoCoreVersion = "3.5.1"
+}
 
 allprojects {
     repositories {
         google()
         mavenCentral()
+    }
+}
+
+// ✅ Only configure Kotlin options for application modules
+subprojects {
+    afterEvaluate { project ->
+        if (project.plugins.hasPlugin("com.android.application")) {
+            project.android.compileOptions {
+                sourceCompatibility JavaVersion.VERSION_17
+                targetCompatibility JavaVersion.VERSION_17
+            }
+            project.android.kotlinOptions {
+                jvmTarget = "17"
+            }
+        }
     }
 }
 
