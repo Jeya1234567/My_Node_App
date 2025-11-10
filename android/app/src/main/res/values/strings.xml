@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">SspSample</string>
+    <string name="title_activity_main">SspSample</string>
+    <string name="package_name">esam.com</string>
+    <string name="custom_url_scheme">esam.com</string>
+</resources>
